@@ -51,9 +51,9 @@ jobs:
           - host: macos-latest
             target: x86_64-apple-darwin
             build: yarn build --target x86_64-apple-darwin
-          - host: windows-latest
-            build: yarn build --target x86_64-pc-windows-msvc
-            target: x86_64-pc-windows-msvc
+          # - host: windows-latest
+          #   build: yarn build --target x86_64-pc-windows-msvc
+          #   target: x86_64-pc-windows-msvc
           - host: ubuntu-latest
             target: x86_64-unknown-linux-gnu
             build: yarn build --target x86_64-unknown-linux-gnu
@@ -100,13 +100,6 @@ jobs:
         run: ${{ matrix.settings.setup }}
         if: ${{ matrix.settings.setup }}
         shell: bash
-      # - name: Install OpenSSL
-      #   if: ${{ contains(matrix.settings.target, 'linux') }}
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install -y \
-      #       libssl-dev \
-      #       pkg-config
       - name: Install dependencies
         run: yarn install
       - name: Build
@@ -128,9 +121,9 @@ jobs:
       fail-fast: false
       matrix:
         settings:
-          - host: windows-latest
-            target: x86_64-pc-windows-msvc
-            architecture: x64
+          # - host: windows-latest
+          #   target: x86_64-pc-windows-msvc
+          #   architecture: x64
           - host: macos-latest
             target: aarch64-apple-darwin
             architecture: arm64
