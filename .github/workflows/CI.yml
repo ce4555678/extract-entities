@@ -153,7 +153,7 @@ jobs:
         run: ls -R .
         shell: bash
       - name: Test bindings
-        run: yarn test
+        run: sh -c "yarn install && yarn test"
   test-linux-binding:
     name: Test ${{ matrix.target }} - node@${{ matrix.node }}
     needs:
@@ -222,7 +222,7 @@ jobs:
           image: ${{ steps.docker.outputs.IMAGE }}
           name: test-bindings-${{ matrix.target }}
           options: '-v ${{ github.workspace }}:${{ github.workspace }} -w ${{ github.workspace }} --platform ${{ steps.docker.outputs.PLATFORM }}'
-          args: yarn test
+          args: sh -c "yarn install && yarn test"
   publish:
     name: Publish
     runs-on: ubuntu-latest
